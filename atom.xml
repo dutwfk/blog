@@ -34,182 +34,6 @@
   </entry>
   
   <entry>
-    <title>.vimrc</title>
-    <link href="http://blog.xrange.org/2016/07/15/2015-01-23-vim-rc/"/>
-    <id>http://blog.xrange.org/2016/07/15/2015-01-23-vim-rc/</id>
-    <published>2016-07-15T07:32:16.000Z</published>
-    <updated>2016-07-15T07:32:16.000Z</updated>
-    
-    <content type="html">&lt;p&gt;set number&lt;br&gt;set tabstop=4&lt;br&gt;set softtabstop=4&lt;br&gt;autocmd BufWritePre * :%s/\s+$//ge&lt;br&gt;set shiftwidth=4&lt;br&gt;set expandtab&lt;br&gt;set ai!&lt;br&gt;set showcmd&lt;br&gt;set ruler&lt;br&gt;set hlsearch “ highlight matches&lt;br&gt;set incsearch “ incremental searching&lt;br&gt;set ignorecase “ searches are case insensitive…&lt;br&gt;set smartcase “ … unless they contain at least one&lt;br&gt;set pastetoggle=&lt;f9&gt;&lt;br&gt;set backspace=indent,eol,start&lt;br&gt;filetype plugin indent on&lt;br&gt;syntax on&lt;br&gt;“F2键增加注释，绝对的好用啊，呵呵&lt;br&gt;“”多行注释，请先按 V&lt;br&gt;map &lt;f2&gt; :call AddComments()&lt;cr&gt;&lt;br&gt;func AddComments()&lt;br&gt;execute “normal ^”&lt;br&gt;let l:a= expand(“\&lt;cword\&gt;“)[0]&lt;br&gt;if a==”#”&lt;br&gt;execute “normal xx”&lt;br&gt;else&lt;br&gt;execute “normal I# “&lt;br&gt;endif&lt;br&gt;endfunc&lt;/cword\&gt;&lt;/cr&gt;&lt;/f2&gt;&lt;/f9&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;set number&lt;br&gt;set tabstop=4&lt;br&gt;set softtabstop=4&lt;br&gt;autocmd BufWritePre * :%s/\s+$//ge&lt;br&gt;set shiftwidth=4&lt;br&gt;set expandtab&lt;br&gt;set ai!&lt;br
-    
-    </summary>
-    
-      <category term="整理" scheme="http://blog.xrange.org/categories/%E6%95%B4%E7%90%86/"/>
-    
-    
-      <category term="config" scheme="http://blog.xrange.org/tags/config/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git配置 .gitconfig文件</title>
-    <link href="http://blog.xrange.org/2016/07/15/2015-01-23-git-config/"/>
-    <id>http://blog.xrange.org/2016/07/15/2015-01-23-git-config/</id>
-    <published>2016-07-15T07:32:06.000Z</published>
-    <updated>2016-07-15T07:32:06.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;Git-配置文件&quot;&gt;&lt;a href=&quot;#Git-配置文件&quot; class=&quot;headerlink&quot; title=&quot;Git 配置文件&quot;&gt;&lt;/a&gt;Git 配置文件&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;最后的用户名邮箱记得替换&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;[color]&lt;br&gt;    diff = auto&lt;br&gt;    status = auto&lt;br&gt;    branch = auto&lt;br&gt;     ui = true&lt;br&gt;[alias]&lt;br&gt;    br = branch&lt;br&gt;    ci = commit&lt;br&gt;    st = status&lt;br&gt;    co = checkout&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;amend = commit --amend
-who = shortlog -n -s --no-merges
-g = grep -n --color -E
-cp = cherry-pick -x
-
-# Clone a repository including all submodules
-cr = clone --recursive
-
-# Commit all changes
-ca = !git add -A &amp;amp;&amp;amp; git commit -av
-
-# Switch to a branch, creating it if necessary
-go = checkout -B
-
-# Reset
-unstage = reset HEAD --
-uncommit = reset --soft HEAD~
-
-# Show verbose output about tags, branches or remotes
-tags = tag -l
-branches = branch -a
-remotes = remote -v
-
-# Credit an author on the latest commit
-credit = &amp;quot;!f() { git commit --amend --author \&amp;quot;$1 &amp;lt;$2&amp;gt;\&amp;quot; -C HEAD; }; f&amp;quot;
-# Interactive rebase with the given number of latest commits
-reb = &amp;quot;!r() { git rebase -i HEAD~$1; }; r&amp;quot;
-# Find branches containing commit
-fb = &amp;quot;!f() { git branch -a --contains $1; }; f&amp;quot;
-# Find tags containing commit
-ft = &amp;quot;!f() { git describe --always --contains $1; }; f&amp;quot;
-# Find commits by source code
-fc = &amp;quot;!f() { git log --pretty=format:&amp;apos;%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d&amp;apos; --decorate --date=short -S$1; }; f&amp;quot;
-# Find commits by commit message
-fm = &amp;quot;!f() { git log --pretty=format:&amp;apos;%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d&amp;apos; --decorate --date=short --grep=$1; }; f&amp;quot;
-# Remove branches that have already been merged with master
-dm = &amp;quot;!git branch --merged | grep -v &amp;apos;\\*&amp;apos; | xargs -n 1 git branch -d&amp;quot;
-
-# Diff
-# Show the diff between the latest commit and the current state
-d = !&amp;quot;git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat&amp;quot;
-# `git di $number` shows the diff between the state `$number` revisions ago and the current state
-di = !&amp;quot;d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d&amp;quot;
-
-# Add
-# &amp;apos;git add -u&amp;apos; handles deleted files, but not new files
-# &amp;apos;git add .&amp;apos; handles any current and new files, but not deleted
-# &amp;apos;git addall&amp;apos; now handles all changes
-addall = !sh -c &amp;apos;git add . &amp;amp;&amp;amp; git add -u&amp;apos;
-
-# Pull
-# Pull in remote changes for the current repository and all its submodules
-p = !&amp;quot;git pull; git submodule foreach git pull origin master&amp;quot;
-
-# Rebase
-# Handy shortcuts for rebasing
-rb = rebase
-rc = rebase --continue
-rs = rebase --skip
-ra = rebase --abort
-
-# Log
-l = log --oneline --decorate -12 --color
-ll = log --oneline --decorate --color
-lc = log --graph --color
-lg = log --color --graph --pretty=format:&amp;apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&amp;lt;%an&amp;gt;%Creset&amp;apos; --abbrev-commit --
-
-# Submodule
-sb = submodule
-sbi = submodule init
-sba = submodule add
-sbu = submodule update
-sbp = submodule foreach git pull
-sbc = submodule foreach git co master
-sbr = submodule update --init --recursive
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;[apply]&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# Detect whitespace errors when applying a patch
-whitespace = fix
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;[core]&lt;br&gt;    editor = vim&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# Use custom `.gitignore_global` and `.gitattributes_global`
-excludesfile = ~/.gitignore_global
-attributesfile = ~/.gitattributes_global
-# Treat spaces before tabs, lines that are indented with 8 or more spaces, and
-# all kinds of trailing whitespace as an error.
-# [default] trailing-space: looks for spaces at the end of a line
-# [default] space-before-tab: looks for spaces before tabs at the beginning of
-# a line
-whitespace = space-before-tab,indent-with-non-tab,trailing-space
-# Make `git rebase` safer on OS X
-# More info: &amp;lt;http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/&amp;gt;
-trustctime = false
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;[color]&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# Use colors in Git commands that are capable of colored output when
-# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-ui = true
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;[color “branch”]&lt;br&gt;    current = yellow reverse&lt;br&gt;    local = yellow&lt;br&gt;    remote = green&lt;br&gt;[color “diff”]&lt;br&gt;    meta = yellow bold&lt;br&gt;    frag = magenta bold&lt;br&gt;    old = red bold&lt;br&gt;    new = green bold&lt;br&gt;[color “status”]&lt;br&gt;    added = yellow&lt;br&gt;    changed = green&lt;br&gt;    untracked = cyan&lt;br&gt;[merge]&lt;br&gt;    tool = vimdiff&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# Include summaries of merged commits in newly created merge commit messages
-log = true
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;[mergetool]&lt;br&gt;    keepBackup = true&lt;br&gt;[difftool “sourcetree”]&lt;br&gt;    cmd = opendiff \”$LOCAL\” \”$REMOTE\”&lt;br&gt;    path =&lt;br&gt;[mergetool “sourcetree”]&lt;br&gt;    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \”$LOCAL\” \”$REMOTE\” -ancestor \”$BASE\” -merge \”$MERGED\”&lt;br&gt;    trustExitCode = true&lt;br&gt;[push]&lt;br&gt;    default = current&lt;br&gt;[http]&lt;br&gt;    postBuffer = 524288000&lt;br&gt;[help]&lt;br&gt;    autocorrect = 1&lt;/p&gt;
-&lt;p&gt;[user]&lt;br&gt;     name = Your name&lt;br&gt;     email = Your email&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Git-配置文件&quot;&gt;&lt;a href=&quot;#Git-配置文件&quot; class=&quot;headerlink&quot; title=&quot;Git 配置文件&quot;&gt;&lt;/a&gt;Git 配置文件&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;最后的用户名邮箱记得替换&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;[color]&lt;br&gt;  
-    
-    </summary>
-    
-      <category term="整理" scheme="http://blog.xrange.org/categories/%E6%95%B4%E7%90%86/"/>
-    
-    
-      <category term="config" scheme="http://blog.xrange.org/tags/config/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RaspberryPi-v2-Mod-B-Pinout</title>
-    <link href="http://blog.xrange.org/2016/07/15/2015-07-10-raspberry-pinout/"/>
-    <id>http://blog.xrange.org/2016/07/15/2015-07-10-raspberry-pinout/</id>
-    <published>2016-07-15T07:28:22.000Z</published>
-    <updated>2016-07-15T07:28:22.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7u2n3n.com1.z0.glb.clouddn.com/images/Raspberry-Pi-v2-Mod-B-Pinout.png?imageView2/2/w/1000&quot; alt=&quot;树莓派&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://7u2n3n.com1.z0.glb.clouddn.com/images/Raspberry-Pi-v2-Mod-B-Pinout.png?imageView2/2/w/1000&quot; alt=&quot;树莓派&quot;&gt;&lt;/p&gt;
-
-    
-    </summary>
-    
-      <category term="技术" scheme="http://blog.xrange.org/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="RaspberryPi" scheme="http://blog.xrange.org/tags/RaspberryPi/"/>
-    
-  </entry>
-  
-  <entry>
     <title>使用ujson优化hadoop的mrjob框架的序列化机制</title>
     <link href="http://blog.xrange.org/2015/11/27/2015-11-27-ujson-hadoop/"/>
     <id>http://blog.xrange.org/2015/11/27/2015-11-27-ujson-hadoop/</id>
@@ -239,6 +63,72 @@ log = true
     
     
       <category term="hadoop，mrjob，ujson" scheme="http://blog.xrange.org/tags/hadoop%EF%BC%8Cmrjob%EF%BC%8Cujson/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RaspberryPi-v2-Mod-B-Pinout</title>
+    <link href="http://blog.xrange.org/2015/07/10/2015-07-10-raspberry-pinout/"/>
+    <id>http://blog.xrange.org/2015/07/10/2015-07-10-raspberry-pinout/</id>
+    <published>2015-07-09T16:00:00.000Z</published>
+    <updated>2016-07-15T08:24:27.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7u2n3n.com1.z0.glb.clouddn.com/images/Raspberry-Pi-v2-Mod-B-Pinout.png?imageView2/2/w/1000&quot; alt=&quot;树莓派&quot;&gt;&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7u2n3n.com1.z0.glb.clouddn.com/images/Raspberry-Pi-v2-Mod-B-Pinout.png?imageView2/2/w/1000&quot; alt=&quot;树莓派&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Git配置 .gitconfig文件</title>
+    <link href="http://blog.xrange.org/2015/01/23/2015-01-23-git-config/"/>
+    <id>http://blog.xrange.org/2015/01/23/2015-01-23-git-config/</id>
+    <published>2015-01-22T16:00:00.000Z</published>
+    <updated>2016-07-15T08:23:21.000Z</updated>
+    
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;最后的用户名邮箱记得替换&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;34&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;35&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;36&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;37&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;38&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;39&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;40&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;41&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;42&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;43&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;44&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;45&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;46&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;47&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;48&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;49&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;50&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;51&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;52&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;53&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;54&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;55&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;56&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;57&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;58&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;59&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;60&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;61&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;62&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;63&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;64&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;65&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;66&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;67&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;68&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;69&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;70&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;71&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;72&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;73&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;74&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;75&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;76&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;77&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;78&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;79&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;80&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;81&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;82&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;83&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;84&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;85&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;86&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;87&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;88&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;89&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;90&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;91&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;92&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;93&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;94&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;95&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;96&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;97&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;98&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;99&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;100&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;101&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;102&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;103&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;104&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;105&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;106&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;107&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;108&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;109&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;110&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;111&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;112&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;113&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;114&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;115&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;116&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;117&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;118&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;119&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;120&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;121&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;122&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;123&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;124&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;125&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;126&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;127&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;128&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;129&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;130&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;131&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;132&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;133&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;134&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;135&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;136&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;137&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;138&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;139&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;140&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;141&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;142&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;[color]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    diff = auto&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    status = auto&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    branch = auto&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     ui = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[&lt;span class=&quot;built_in&quot;&gt;alias&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    br = branch&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ci = commit&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    st = status&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    co = checkout&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    amend = commit --amend&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    who = shortlog -n &lt;span class=&quot;_&quot;&gt;-s&lt;/span&gt; --no-merges&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    g = grep -n --color -E&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    cp = cherry-pick -x&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Clone a repository including all submodules&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    cr = &lt;span class=&quot;built_in&quot;&gt;clone&lt;/span&gt; --recursive&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Commit all changes&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ca = !git add -A &amp;amp;&amp;amp; git commit -av&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Switch to a branch, creating it if necessary&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    go = checkout -B&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Reset&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    unstage = reset HEAD --&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    uncommit = reset --soft HEAD~&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Show verbose output about tags, branches or remotes&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    tags = tag &lt;span class=&quot;_&quot;&gt;-l&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    branches = branch &lt;span class=&quot;_&quot;&gt;-a&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    remotes = remote -v&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Credit an author on the latest commit&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    credit = &lt;span class=&quot;string&quot;&gt;&quot;!f() &amp;#123; git commit --amend --author \&quot;&lt;span class=&quot;variable&quot;&gt;$1&lt;/span&gt; &amp;lt;&lt;span class=&quot;variable&quot;&gt;$2&lt;/span&gt;&amp;gt;\&quot; -C HEAD; &amp;#125;; f&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Interactive rebase with the given number of latest commits&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    reb = &lt;span class=&quot;string&quot;&gt;&quot;!r() &amp;#123; git rebase -i HEAD~&lt;span class=&quot;variable&quot;&gt;$1&lt;/span&gt;; &amp;#125;; r&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Find branches containing commit&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    fb = &lt;span class=&quot;string&quot;&gt;&quot;!f() &amp;#123; git branch -a --contains &lt;span class=&quot;variable&quot;&gt;$1&lt;/span&gt;; &amp;#125;; f&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Find tags containing commit&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ft = &lt;span class=&quot;string&quot;&gt;&quot;!f() &amp;#123; git describe --always --contains &lt;span class=&quot;variable&quot;&gt;$1&lt;/span&gt;; &amp;#125;; f&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Find commits by source code&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;fc&lt;/span&gt; = &lt;span class=&quot;string&quot;&gt;&quot;!f() &amp;#123; git log --pretty=format:&#39;%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d&#39; --decorate --date=short -S&lt;span class=&quot;variable&quot;&gt;$1&lt;/span&gt;; &amp;#125;; f&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Find commits by commit message&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    fm = &lt;span class=&quot;string&quot;&gt;&quot;!f() &amp;#123; git log --pretty=format:&#39;%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d&#39; --decorate --date=short --grep=&lt;span class=&quot;variable&quot;&gt;$1&lt;/span&gt;; &amp;#125;; f&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Remove branches that have already been merged with master&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    dm = &lt;span class=&quot;string&quot;&gt;&quot;!git branch --merged | grep -v &#39;\\*&#39; | xargs -n 1 git branch -d&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Diff&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Show the diff between the latest commit and the current state&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    d = !&lt;span class=&quot;string&quot;&gt;&quot;git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# `git di $number` shows the diff between the state `$number` revisions ago and the current state&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    di = !&lt;span class=&quot;string&quot;&gt;&quot;d() &amp;#123; git diff --patch-with-stat HEAD~&lt;span class=&quot;variable&quot;&gt;$1&lt;/span&gt;; &amp;#125;; git diff-index --quiet HEAD -- || clear; d&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Add&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# &#39;git add -u&#39; handles deleted files, but not new files&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# &#39;git add .&#39; handles any current and new files, but not deleted&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# &#39;git addall&#39; now handles all changes&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    addall = !sh -c &lt;span class=&quot;string&quot;&gt;&#39;git add . &amp;amp;&amp;amp; git add -u&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Pull&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Pull in remote changes for the current repository and all its submodules&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    p = !&lt;span class=&quot;string&quot;&gt;&quot;git pull; git submodule foreach git pull origin master&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Rebase&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Handy shortcuts for rebasing&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    rb = rebase&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    rc = rebase --continue&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    rs = rebase --skip&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ra = rebase --abort&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Log&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    l = &lt;span class=&quot;built_in&quot;&gt;log&lt;/span&gt; --oneline --decorate -12 --color&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ll = &lt;span class=&quot;built_in&quot;&gt;log&lt;/span&gt; --oneline --decorate --color&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    lc = &lt;span class=&quot;built_in&quot;&gt;log&lt;/span&gt; --graph --color&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    lg = &lt;span class=&quot;built_in&quot;&gt;log&lt;/span&gt; --color --graph --pretty=format:&lt;span class=&quot;string&quot;&gt;&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&amp;lt;%an&amp;gt;%Creset&#39;&lt;/span&gt; --abbrev-commit --&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Submodule&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    sb = submodule&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    sbi = submodule init&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    sba = submodule add&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    sbu = submodule update&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    sbp = submodule foreach git pull&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    sbc = submodule foreach git co master&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    sbr = submodule update --init --recursive&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[apply]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Detect whitespace errors when applying a patch&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    whitespace = fix&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[core]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    editor = vim&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Use custom `.gitignore_global` and `.gitattributes_global`&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    excludesfile = ~/.gitignore_global&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    attributesfile = ~/.gitattributes_global&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Treat spaces before tabs, lines that are indented with 8 or more spaces, and&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# all kinds of trailing whitespace as an error.&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# [default] trailing-space: looks for spaces at the end of a line&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# [default] space-before-tab: looks for spaces before tabs at the beginning of&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# a line&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    whitespace = space-before-tab,indent-with-non-tab,trailing-space&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Make `git rebase` safer on OS X&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# More info: &amp;lt;http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    trustctime = &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[color]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Use colors in Git commands that are capable of colored output when&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ui = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[color &lt;span class=&quot;string&quot;&gt;&quot;branch&quot;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    current = yellow reverse&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;local&lt;/span&gt; = yellow&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    remote = green&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[color &lt;span class=&quot;string&quot;&gt;&quot;diff&quot;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    meta = yellow bold&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    frag = magenta bold&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    old = red bold&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    new = green bold&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[color &lt;span class=&quot;string&quot;&gt;&quot;status&quot;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    added = yellow&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    changed = green&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    untracked = cyan&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[merge]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    tool = vimdiff&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# Include summaries of merged commits in newly created merge commit messages&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;log&lt;/span&gt; = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[mergetool]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    keepBackup = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[difftool &lt;span class=&quot;string&quot;&gt;&quot;sourcetree&quot;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    cmd = opendiff \&lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$LOCAL&lt;/span&gt;\&quot; \&quot;&lt;span class=&quot;variable&quot;&gt;$REMOTE&lt;/span&gt;\&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    path =&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[mergetool &quot;sourcetree&lt;span class=&quot;string&quot;&gt;&quot;]&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \&quot;&lt;span class=&quot;variable&quot;&gt;$LOCAL&lt;/span&gt;\&quot; \&quot;&lt;span class=&quot;variable&quot;&gt;$REMOTE&lt;/span&gt;\&quot; -ancestor \&quot;&lt;span class=&quot;variable&quot;&gt;$BASE&lt;/span&gt;\&quot; -merge \&quot;&lt;span class=&quot;variable&quot;&gt;$MERGED&lt;/span&gt;\&quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    trustExitCode = true&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[push]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    default = current&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[http]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    postBuffer = 524288000&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[help]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    autocorrect = 1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[user]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     name = Your name&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     email = Your email&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;最后的用户名邮箱记得替换&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="config" scheme="http://blog.xrange.org/tags/config/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>.vimrc</title>
+    <link href="http://blog.xrange.org/2015/01/23/2015-01-23-vim-rc/"/>
+    <id>http://blog.xrange.org/2015/01/23/2015-01-23-vim-rc/</id>
+    <published>2015-01-22T16:00:00.000Z</published>
+    <updated>2016-07-15T08:25:03.000Z</updated>
+    
+    <content type="html">&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; number&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; tabstop=4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; softtabstop=4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;autocmd BufWritePre * :%s/\s\+$//ge&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; shiftwidth=4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; expandtab&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; ai!&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; showcmd&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; ruler&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; hlsearch &lt;span class=&quot;string&quot;&gt;&quot; highlight matches&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;set incsearch &quot; incremental searching&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; ignorecase &lt;span class=&quot;string&quot;&gt;&quot; searches are case insensitive...&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;set smartcase &quot; ... unless they contain at least one&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; pastetoggle=&amp;lt;F9&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; backspace=indent,eol,start&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;filetype plugin indent on&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;syntax on&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;&quot;F2键增加注释，绝对的好用啊，呵呵&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&quot;&lt;span class=&quot;string&quot;&gt;&quot;多行注释，请先按 V&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;map &amp;lt;F2&amp;gt; :call AddComments()&amp;lt;CR&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;func AddComments()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;execute &quot;normal ^&lt;span class=&quot;string&quot;&gt;&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;let l:a= expand(&quot;\&amp;lt;cWORD\&amp;gt;&lt;span class=&quot;string&quot;&gt;&quot;)[0]&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if a==&quot;&lt;span class=&quot;comment&quot;&gt;#&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;execute &lt;span class=&quot;string&quot;&gt;&quot;normal xx&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;execute &lt;span class=&quot;string&quot;&gt;&quot;normal I# &quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;endif&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;endfunc&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
+    
+    </summary>
+    
     
   </entry>
   
