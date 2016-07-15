@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.xrange.org/"/>
-  <updated>2016-07-14T07:52:11.000Z</updated>
+  <updated>2016-07-15T07:38:55.000Z</updated>
   <id>http://blog.xrange.org/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>sanlitun</title>
-    <link href="http://blog.xrange.org/2016/07/14/sanlitun/"/>
-    <id>http://blog.xrange.org/2016/07/14/sanlitun/</id>
-    <published>2016-07-14T07:50:33.000Z</published>
-    <updated>2016-07-14T07:52:11.000Z</updated>
+    <title>test</title>
+    <link href="http://blog.xrange.org/2016/07/15/test/"/>
+    <id>http://blog.xrange.org/2016/07/15/test/</id>
+    <published>2016-07-15T07:38:34.000Z</published>
+    <updated>2016-07-15T07:38:55.000Z</updated>
     
     <content type="html"></content>
     
@@ -28,6 +28,217 @@
     
     </summary>
     
+    
+      <category term="test, hexo" scheme="http://blog.xrange.org/tags/test-hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>.vimrc</title>
+    <link href="http://blog.xrange.org/2016/07/15/2015-01-23-vim-rc/"/>
+    <id>http://blog.xrange.org/2016/07/15/2015-01-23-vim-rc/</id>
+    <published>2016-07-15T07:32:16.000Z</published>
+    <updated>2016-07-15T07:32:16.000Z</updated>
+    
+    <content type="html">&lt;p&gt;set number&lt;br&gt;set tabstop=4&lt;br&gt;set softtabstop=4&lt;br&gt;autocmd BufWritePre * :%s/\s+$//ge&lt;br&gt;set shiftwidth=4&lt;br&gt;set expandtab&lt;br&gt;set ai!&lt;br&gt;set showcmd&lt;br&gt;set ruler&lt;br&gt;set hlsearch “ highlight matches&lt;br&gt;set incsearch “ incremental searching&lt;br&gt;set ignorecase “ searches are case insensitive…&lt;br&gt;set smartcase “ … unless they contain at least one&lt;br&gt;set pastetoggle=&lt;f9&gt;&lt;br&gt;set backspace=indent,eol,start&lt;br&gt;filetype plugin indent on&lt;br&gt;syntax on&lt;br&gt;“F2键增加注释，绝对的好用啊，呵呵&lt;br&gt;“”多行注释，请先按 V&lt;br&gt;map &lt;f2&gt; :call AddComments()&lt;cr&gt;&lt;br&gt;func AddComments()&lt;br&gt;execute “normal ^”&lt;br&gt;let l:a= expand(“\&lt;cword\&gt;“)[0]&lt;br&gt;if a==”#”&lt;br&gt;execute “normal xx”&lt;br&gt;else&lt;br&gt;execute “normal I# “&lt;br&gt;endif&lt;br&gt;endfunc&lt;/cword\&gt;&lt;/cr&gt;&lt;/f2&gt;&lt;/f9&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;set number&lt;br&gt;set tabstop=4&lt;br&gt;set softtabstop=4&lt;br&gt;autocmd BufWritePre * :%s/\s+$//ge&lt;br&gt;set shiftwidth=4&lt;br&gt;set expandtab&lt;br&gt;set ai!&lt;br
+    
+    </summary>
+    
+      <category term="整理" scheme="http://blog.xrange.org/categories/%E6%95%B4%E7%90%86/"/>
+    
+    
+      <category term="config" scheme="http://blog.xrange.org/tags/config/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git配置 .gitconfig文件</title>
+    <link href="http://blog.xrange.org/2016/07/15/2015-01-23-git-config/"/>
+    <id>http://blog.xrange.org/2016/07/15/2015-01-23-git-config/</id>
+    <published>2016-07-15T07:32:06.000Z</published>
+    <updated>2016-07-15T07:32:06.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;Git-配置文件&quot;&gt;&lt;a href=&quot;#Git-配置文件&quot; class=&quot;headerlink&quot; title=&quot;Git 配置文件&quot;&gt;&lt;/a&gt;Git 配置文件&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;最后的用户名邮箱记得替换&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[color]&lt;br&gt;    diff = auto&lt;br&gt;    status = auto&lt;br&gt;    branch = auto&lt;br&gt;     ui = true&lt;br&gt;[alias]&lt;br&gt;    br = branch&lt;br&gt;    ci = commit&lt;br&gt;    st = status&lt;br&gt;    co = checkout&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;amend = commit --amend
+who = shortlog -n -s --no-merges
+g = grep -n --color -E
+cp = cherry-pick -x
+
+# Clone a repository including all submodules
+cr = clone --recursive
+
+# Commit all changes
+ca = !git add -A &amp;amp;&amp;amp; git commit -av
+
+# Switch to a branch, creating it if necessary
+go = checkout -B
+
+# Reset
+unstage = reset HEAD --
+uncommit = reset --soft HEAD~
+
+# Show verbose output about tags, branches or remotes
+tags = tag -l
+branches = branch -a
+remotes = remote -v
+
+# Credit an author on the latest commit
+credit = &amp;quot;!f() { git commit --amend --author \&amp;quot;$1 &amp;lt;$2&amp;gt;\&amp;quot; -C HEAD; }; f&amp;quot;
+# Interactive rebase with the given number of latest commits
+reb = &amp;quot;!r() { git rebase -i HEAD~$1; }; r&amp;quot;
+# Find branches containing commit
+fb = &amp;quot;!f() { git branch -a --contains $1; }; f&amp;quot;
+# Find tags containing commit
+ft = &amp;quot;!f() { git describe --always --contains $1; }; f&amp;quot;
+# Find commits by source code
+fc = &amp;quot;!f() { git log --pretty=format:&amp;apos;%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d&amp;apos; --decorate --date=short -S$1; }; f&amp;quot;
+# Find commits by commit message
+fm = &amp;quot;!f() { git log --pretty=format:&amp;apos;%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d&amp;apos; --decorate --date=short --grep=$1; }; f&amp;quot;
+# Remove branches that have already been merged with master
+dm = &amp;quot;!git branch --merged | grep -v &amp;apos;\\*&amp;apos; | xargs -n 1 git branch -d&amp;quot;
+
+# Diff
+# Show the diff between the latest commit and the current state
+d = !&amp;quot;git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat&amp;quot;
+# `git di $number` shows the diff between the state `$number` revisions ago and the current state
+di = !&amp;quot;d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d&amp;quot;
+
+# Add
+# &amp;apos;git add -u&amp;apos; handles deleted files, but not new files
+# &amp;apos;git add .&amp;apos; handles any current and new files, but not deleted
+# &amp;apos;git addall&amp;apos; now handles all changes
+addall = !sh -c &amp;apos;git add . &amp;amp;&amp;amp; git add -u&amp;apos;
+
+# Pull
+# Pull in remote changes for the current repository and all its submodules
+p = !&amp;quot;git pull; git submodule foreach git pull origin master&amp;quot;
+
+# Rebase
+# Handy shortcuts for rebasing
+rb = rebase
+rc = rebase --continue
+rs = rebase --skip
+ra = rebase --abort
+
+# Log
+l = log --oneline --decorate -12 --color
+ll = log --oneline --decorate --color
+lc = log --graph --color
+lg = log --color --graph --pretty=format:&amp;apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&amp;lt;%an&amp;gt;%Creset&amp;apos; --abbrev-commit --
+
+# Submodule
+sb = submodule
+sbi = submodule init
+sba = submodule add
+sbu = submodule update
+sbp = submodule foreach git pull
+sbc = submodule foreach git co master
+sbr = submodule update --init --recursive
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;[apply]&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Detect whitespace errors when applying a patch
+whitespace = fix
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;[core]&lt;br&gt;    editor = vim&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Use custom `.gitignore_global` and `.gitattributes_global`
+excludesfile = ~/.gitignore_global
+attributesfile = ~/.gitattributes_global
+# Treat spaces before tabs, lines that are indented with 8 or more spaces, and
+# all kinds of trailing whitespace as an error.
+# [default] trailing-space: looks for spaces at the end of a line
+# [default] space-before-tab: looks for spaces before tabs at the beginning of
+# a line
+whitespace = space-before-tab,indent-with-non-tab,trailing-space
+# Make `git rebase` safer on OS X
+# More info: &amp;lt;http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/&amp;gt;
+trustctime = false
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;[color]&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Use colors in Git commands that are capable of colored output when
+# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+ui = true
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;[color “branch”]&lt;br&gt;    current = yellow reverse&lt;br&gt;    local = yellow&lt;br&gt;    remote = green&lt;br&gt;[color “diff”]&lt;br&gt;    meta = yellow bold&lt;br&gt;    frag = magenta bold&lt;br&gt;    old = red bold&lt;br&gt;    new = green bold&lt;br&gt;[color “status”]&lt;br&gt;    added = yellow&lt;br&gt;    changed = green&lt;br&gt;    untracked = cyan&lt;br&gt;[merge]&lt;br&gt;    tool = vimdiff&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Include summaries of merged commits in newly created merge commit messages
+log = true
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;[mergetool]&lt;br&gt;    keepBackup = true&lt;br&gt;[difftool “sourcetree”]&lt;br&gt;    cmd = opendiff \”$LOCAL\” \”$REMOTE\”&lt;br&gt;    path =&lt;br&gt;[mergetool “sourcetree”]&lt;br&gt;    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \”$LOCAL\” \”$REMOTE\” -ancestor \”$BASE\” -merge \”$MERGED\”&lt;br&gt;    trustExitCode = true&lt;br&gt;[push]&lt;br&gt;    default = current&lt;br&gt;[http]&lt;br&gt;    postBuffer = 524288000&lt;br&gt;[help]&lt;br&gt;    autocorrect = 1&lt;/p&gt;
+&lt;p&gt;[user]&lt;br&gt;     name = Your name&lt;br&gt;     email = Your email&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Git-配置文件&quot;&gt;&lt;a href=&quot;#Git-配置文件&quot; class=&quot;headerlink&quot; title=&quot;Git 配置文件&quot;&gt;&lt;/a&gt;Git 配置文件&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;最后的用户名邮箱记得替换&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[color]&lt;br&gt;  
+    
+    </summary>
+    
+      <category term="整理" scheme="http://blog.xrange.org/categories/%E6%95%B4%E7%90%86/"/>
+    
+    
+      <category term="config" scheme="http://blog.xrange.org/tags/config/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RaspberryPi-v2-Mod-B-Pinout</title>
+    <link href="http://blog.xrange.org/2016/07/15/2015-07-10-raspberry-pinout/"/>
+    <id>http://blog.xrange.org/2016/07/15/2015-07-10-raspberry-pinout/</id>
+    <published>2016-07-15T07:28:22.000Z</published>
+    <updated>2016-07-15T07:28:22.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7u2n3n.com1.z0.glb.clouddn.com/images/Raspberry-Pi-v2-Mod-B-Pinout.png?imageView2/2/w/1000&quot; alt=&quot;树莓派&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7u2n3n.com1.z0.glb.clouddn.com/images/Raspberry-Pi-v2-Mod-B-Pinout.png?imageView2/2/w/1000&quot; alt=&quot;树莓派&quot;&gt;&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="技术" scheme="http://blog.xrange.org/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="RaspberryPi" scheme="http://blog.xrange.org/tags/RaspberryPi/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用ujson优化hadoop的mrjob框架的序列化机制</title>
+    <link href="http://blog.xrange.org/2015/11/27/2015-11-27-ujson-hadoop/"/>
+    <id>http://blog.xrange.org/2015/11/27/2015-11-27-ujson-hadoop/</id>
+    <published>2015-11-27T01:56:00.000Z</published>
+    <updated>2016-07-15T07:37:53.000Z</updated>
+    
+    <content type="html">&lt;h4 id=&quot;故事的开始&quot;&gt;&lt;a href=&quot;#故事的开始&quot; class=&quot;headerlink&quot; title=&quot;故事的开始&quot;&gt;&lt;/a&gt;故事的开始&lt;/h4&gt;&lt;p&gt;第一次正式在hadoop集群上面跑数据时，遇到一个好玩的事情：&lt;/p&gt;
+&lt;p&gt;同事小王在看完的代码后，热情的给我添加了下面一段代码，&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;30&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;31&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;32&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;33&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;34&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;35&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;36&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;37&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;38&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;39&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;40&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;41&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;42&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;43&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;44&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;45&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# -*- coding:utf-8 -*-&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; ujson &lt;span class=&quot;keyword&quot;&gt;as&lt;/span&gt; json&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; mrjob.job &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; MRJob&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;UJSONProtocol&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(object)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self, line)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        raw_key, raw_value = line.split(&lt;span class=&quot;string&quot;&gt;&#39;\t&#39;&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; (raw_key, json.loads(raw_value))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self, key, value)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;%s\t%s&#39;&lt;/span&gt; % (key, json.dumps(value))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;UJSONValueProtocol&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(object)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self, line)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;None&lt;/span&gt;, json.loads(line))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;except&lt;/span&gt; (ValueError, KeyError, TypeError), e:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            sys.stderr.write(line)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self, _, value)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; json.dumps(value)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ContactsMR&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(MRJob)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    INTERNAL_PROTOCOL = UJSONProtocol&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    OUTPUT_PROTOCOL = UJSONProtocol&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;mapper&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self, _, line)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        id, contacts = line.split(&lt;span class=&quot;string&quot;&gt;&#39;,&#39;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        contacts = contacts.strip()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        contacts = contacts.split(&lt;span class=&quot;string&quot;&gt;&#39;|&#39;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; contact &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; contacts:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;yield&lt;/span&gt; contact, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;combiner&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self, contact, values)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;yield&lt;/span&gt; contact, sum(values)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;reducer&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self, contact, counts)&lt;/span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;yield&lt;/span&gt; contact, sum(counts)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后用修改前后的脚本分别跑了一下数据，结果是加了代码后计算时间缩短为原来的三分之一。这几行代码的作用是什么呢？&lt;/p&gt;
+&lt;h4 id=&quot;MRJob&quot;&gt;&lt;a href=&quot;#MRJob&quot; class=&quot;headerlink&quot; title=&quot;MRJob&quot;&gt;&lt;/a&gt;MRJob&lt;/h4&gt;&lt;p&gt;mrjob是一个开放源码的Python框架，封装Hadoop的数据流，并积极开发Yelp的。由于Yelp的运作完全在亚马逊网络服务，mrjob的整合与EMR是令人难以置信的光滑和容易（使用 boto包）。&lt;/p&gt;
+&lt;p&gt;一些其他的框架参考： &lt;a href=&quot;http://www.oschina.net/translate/a-guide-to-python-frameworks-for-hadoop&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hadoop的Python框架指南&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;mrjob提供了一个Python的API与Hadoop的数据流，并允许用户使用任何对象作为键和映射器。默认情况下，这些对象被序列化为JSON对象的内部，但也有支持pickle的对象。有没有其他的二进制I / O格式的开箱即用，但有一个机制来实现自定义序列化。&lt;/p&gt;
+&lt;p&gt;自定义序列化就用到了下面的ujson…&lt;/p&gt;
+&lt;h4 id=&quot;UltraJSON&quot;&gt;&lt;a href=&quot;#UltraJSON&quot; class=&quot;headerlink&quot; title=&quot;UltraJSON&quot;&gt;&lt;/a&gt;UltraJSON&lt;/h4&gt;&lt;p&gt;一个号称python中最好的json解析模块UltraJSON，在赖勇浩的blog中有一篇翻译的文章&lt;a href=&quot;http://blog.csdn.net/gzlaiyonghao/article/details/6567408&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《UltraJSON——Python 的极速 JSON 编解码器》&lt;/a&gt;，这篇文章是ujson作者写的。&lt;/p&gt;
+&lt;p&gt;ujson的Github地址：&lt;a href=&quot;https://github.com/esnme/ultrajson&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/esnme/ultrajson&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;安装：pip install usjon&lt;/p&gt;
+&lt;p&gt;源码是用c写的，还需在深入研究此间门道…&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;故事的开始&quot;&gt;&lt;a href=&quot;#故事的开始&quot; class=&quot;headerlink&quot; title=&quot;故事的开始&quot;&gt;&lt;/a&gt;故事的开始&lt;/h4&gt;&lt;p&gt;第一次正式在hadoop集群上面跑数据时，遇到一个好玩的事情：&lt;/p&gt;
+&lt;p&gt;同事小王在看完的代码后，热情的给我添加
+    
+    </summary>
+    
+    
+      <category term="hadoop，mrjob，ujson" scheme="http://blog.xrange.org/tags/hadoop%EF%BC%8Cmrjob%EF%BC%8Cujson/"/>
     
   </entry>
   
