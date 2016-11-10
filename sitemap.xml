@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.xrange.org/2015/01/23/2015-01-23-vim-rc/</loc>
-    
-    <lastmod>2016-07-15T08:25:03.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.xrange.org/2015/07/10/2015-07-10-raspberry-pinout/</loc>
     
     <lastmod>2016-07-15T08:24:27.000Z</lastmod>
@@ -16,30 +9,9 @@
   </url>
   
   <url>
-    <loc>http://blog.xrange.org/2015/01/23/2015-01-23-git-config/</loc>
-    
-    <lastmod>2016-07-15T08:23:21.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.xrange.org/about/index.html</loc>
     
     <lastmod>2016-07-15T08:10:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.xrange.org/2016/07/15/test/</loc>
-    
-    <lastmod>2016-07-15T07:38:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.xrange.org/2015/11/27/2015-11-27-ujson-hadoop/</loc>
-    
-    <lastmod>2016-07-15T07:37:53.000Z</lastmod>
     
   </url>
   
